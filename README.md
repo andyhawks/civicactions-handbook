@@ -1,25 +1,65 @@
-# EMPLOYEE HANDBOOK
+---
+title: CivicActions Guidebook
+hide:
+  - navigation
+  - toc
+---
 
-This Handbook has been prepared to describe CivicActions' philosophy, working methods and processes, employment practices, policies, benefits, and the conduct we expect from members of our team.
+## <a name="purpose"></a>Guidebook Purpose
 
-## This is not really the README you are looking for.
+This Guidebook has been prepared to describe the CivicActions philosophy, working methods and processes, employment practices, policies, benefits, and conduct we expect from members of our team.
 
-The main handbook README is located at [docs/README.md](docs/README.md), which gets synced to readthedocs at <https://handbook.civicactions.com/en/latest/README/>
+## Common Topics
 
-## CivicActions, Inc.
+<!-- lint disable -->
 
-2625 Alcatraz Avenue, Suite 320
-Berkeley, CA 94705
+<div class="grid cards" markdown>
+
+- :fontawesome-regular-calendar:{ .lg .middle } **Holidays**
+
+    ---
+
+    Find out when CivicActions is closed
+
+    [:octicons-arrow-right-24: US holidays](employee-benefits/README.md)
+    [:octicons-arrow-right-24: Canadian holidays](employee-benefits/canada-benefits-policy.md#holidays)
+
+- :fontawesome-solid-laptop:{ .lg .middle } **Technology stipend**
+
+    ---
+
+    Employees get annual funds for technology
+
+    [:octicons-arrow-right-24: US tech stipend](employee-benefits/us-tech-stipend.md)
+    [:octicons-arrow-right-24: Canadian tech stipend](employee-benefits/canada-tech-stipend.md)
+
+- :fontawesome-regular-credit-card:{ .lg .middle } **Expense requests**
+
+    ---
+
+    How to get reimbursed for business expenses
+
+    [:octicons-arrow-right-24: Out-of-pocket expenses](company-policies/expenses.md)
+
+</div>
+
+<!-- lint enable -->
+
+## Contact Information
+
+CivicActions, Inc.
+3527 Mount Diablo Blvd., Unit 269
+Lafayette, CA 94549
 
 510.408.7510 | main
 888.714.7388 | fax
-civicactions.com
+[CivicActions.com](https://civicactions.com)
 
 ## License
 
-Copyright 2017-2019 CivicActions.
+Copyright 2017-2024 CivicActions.
 
-This work is licensed under the terms of the [Creative Commons Attribution 4.0 International (CC BY 4.0) license](docs/LICENSE.md).
+This work is licensed under the terms of the [Creative Commons Attribution 4.0 International (CC BY 4.0) license](LICENSE.md).
 
 ## Acknowledgements
 

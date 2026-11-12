@@ -1,14 +1,36 @@
-name: reviewdog
-on: [pull_request]
+name: Checking Markdown formatting and providing language suggestions
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+
 jobs:
   remark-lint:
-    name: runner / remark-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Run remark-lint with reviewdog for documentation projects.
-        uses: ./lint
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '24'
+          cache: 'yarn'
+          cache-dependency-path: '.config/remark/package.json'
+
+      - name: Install reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Install remark dependencies
+        run: yarn install
+        working-directory: .config/remark
+
+      - name: Run remark-lint with reviewdog
+        run: .config/remark/remark.sh
+        env:
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,41 +5,61 @@ repos:
     hooks:
       - id: remark
         name: remark
-        language: docker_image
-        entry: civicactions/handbook-lint:latest remark.sh
+        language: system
+        entry: sh -c 'cd .config/remark/ && yarn && yarn run remark-changed'
         always_run: true
         pass_filenames: false
         verbose: true
-  - repo: local
-    hooks:
       - id: mkdocs
         name: mkdocs
-        language: docker_image
-        entry: civicactions/handbook-lint:latest mkdocs.sh
+        language: script
+        entry: ./.config/mkdocs/mkdocs.sh
         always_run: true
         pass_filenames: false
         verbose: true
+  - repo: https://github.com/hukkin/mdformat
+    # Keep this in sync with the version in .config/mkdocs/pyproject.toml
+    rev: 1.0.0
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-mkdocs
+          - mdformat-black
+          - mdformat-config
+          - mdformat-footnote
+          - mdformat-front-matters
+          - mdformat-simple-breaks
+          - mdformat-gfm
+          - mdformat-web
+          - mdformat-wikilink
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: fix-byte-order-marker
       - id: check-yaml
+        args: ["--unsafe"]
       - id: check-json
       - id: check-added-large-files
   - repo: https://github.com/mattlqx/pre-commit-search-and-replace
-    rev: v1.0.4
+    rev: v1.1.9
     hooks:
       - id: search-and-replace
-        files: docs
+        language_version: default
+        types: [markdown]
+        args:
+          - "--config=.config/pre-commit-search-and-replace.yaml"
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.0.0
+    rev: v2.4.3
     hooks:
       - id: codespell
-        files: docs
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.2.1
-    hooks:
-      - id: prettier
+        types: [markdown]
+        args:
+          - "--ignore-words=.config/codespell-ignore"
+          - "--write-changes"
+ci:
+  # We skip checks that have their own actions or external dependencies.
+  skip: [remark, codespell, mkdocs]

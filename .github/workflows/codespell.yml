@@ -1,4 +1,7 @@
-name: codespell
+name: Checking for common typos
+permissions:
+  contents: read
+  pull-requests: write
 
 on:
   pull_request:
@@ -7,8 +10,8 @@ jobs:
   codespell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - uses: codespell-project/actions-codespell@master
         with:
           path: docs
-          ignore_words_file: .codespell-ignore
+          ignore_words_file: .config/codespell-ignore
